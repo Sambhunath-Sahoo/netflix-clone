@@ -9,7 +9,6 @@ const base_url = "https://image.tmdb.org/t/p/original/";
 function Row({ title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState("");
-
     // runs only once
     useEffect(() => {
 
@@ -34,7 +33,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         if(trailerUrl) {
             setTrailerUrl('');
         } else {
-            movieTrailer(movie?.name || "")
+            movieTrailer(movie?.name ? movie?.name : movie?.title || "")
             .then (url => {
                 const urlParams = new URLSearchParams(new URL(url).search);
                 setTrailerUrl(urlParams.get("v"));
