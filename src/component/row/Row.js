@@ -5,6 +5,13 @@ import "./Row.css";
 import movieTrailer from "movie-trailer";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
+const opts = {
+    height: "390",
+    width: "100%",
+    playerVars: {
+        autoPlay: 1,
+    },
+};
 
 function Row({ title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
@@ -19,13 +26,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
         fetchData();
     }, [fetchUrl]);
 
-    const opts = {
-        height: "390",
-        width: "100%",
-        playerVars: {
-            autoPlay: 1,
-        },
-    };
 
     const handleClick = (movie) => {
         movieTrailer(movie?.name ? movie?.name : movie?.title || "")
